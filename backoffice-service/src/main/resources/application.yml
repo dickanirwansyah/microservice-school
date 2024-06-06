@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: backoffice-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_msig_backoffice
+    username: dicka
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  servlet:
+    context-path: /backoffice-service
+  port: 8082
+jwt:
+  secretKey: 862cacd571d44a579f5189eca10887990c40fcb96d3c0dfdff02d31bfcda7a1b
+  expirationInMs: 3600000
