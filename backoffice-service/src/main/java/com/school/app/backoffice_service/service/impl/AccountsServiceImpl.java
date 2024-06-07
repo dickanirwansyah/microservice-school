@@ -71,8 +71,10 @@ public class AccountsServiceImpl implements AccountsService {
         return accountsRepository.findById(id)
                 .map(accounts -> AccountsResponse.builder()
                         .id(accounts.getId())
-                        .dob(accounts.getDob().toString())
+                        .dob(BackofficeHelper.convertDob(accounts.getDob()))
                         .email(accounts.getEmail())
+                        .rolesId(accounts.getRolesId())
+                        .rolesName(rolesRepository.findById(accounts.getRolesId()).get().getName())
                         .fullname(accounts.getFullname())
                         .build())
                 .orElseThrow(() -> new CustomMessageException("Find data accounts gagal, karena id tidak ditemukan !",HttpStatus.NOT_FOUND.value()));

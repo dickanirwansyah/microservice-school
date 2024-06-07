@@ -35,7 +35,7 @@ public class AccountsController extends BaseController{
                 .body(RestResponse.isOk(accountsService.delete(id)));
     }
 
-    @DeleteMapping(value = "/v1/find/{id}")
+    @GetMapping(value = "/v1/find/{id}")
     public ResponseEntity<RestResponse> find(@PathVariable("id")String id){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(RestResponse.isOk(accountsService.find(id)));

@@ -11,4 +11,9 @@ public class BackofficeHelper {
         LocalDate localDate = LocalDate.parse(dob, dateTimeFormatter);
         return localDate.atStartOfDay();
     }
+
+    public static String convertDob(LocalDateTime dob){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dob.format(dateTimeFormatter);
+    }
 }
