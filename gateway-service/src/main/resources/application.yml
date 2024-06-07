@@ -1,28 +1,23 @@
+server:
+  port: 10000
 spring:
   application:
     name: gateway-service
   cloud:
     gateway:
-      discovery:
-        locator:
-          enable: true
-          url-expression: "'http://'+serviceId+':'+getPort()"
-          lower-case-service-id: true
       routes:
-        - id : backoffice-service
-          uri: lb://backoffice-service
-          predicates:
-            - Path=/backoffice-service/**
         - id: siswa-service
           uri: lb://siswa-service
           predicates:
-            - Path=/siswa-service
+            - Path=/siswa-service/**
+        - id: backoffice-service
+          uri: lb://backoffice-service
+          predicates:
+            - Path=/backoffice-service/**
         - id: payment-service
           uri: lb://payment-service
           predicates:
-            - Path=/payment-service
-server:
-  port: 10000
+            - Path=/payment-service/**
 logging:
   level:
     org.springframework.web.HttpLogging: TRACE
