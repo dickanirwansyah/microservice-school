@@ -3,9 +3,7 @@ package com.school.app.backoffice_service;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -15,13 +13,4 @@ public class BackofficeServiceApplication {
 		SpringApplication.run(BackofficeServiceApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*");
-			}
-		};
-	}
 }
