@@ -6,6 +6,8 @@ import com.school.app.siswa_service.dto.response.PageResponse;
 import com.school.app.siswa_service.dto.response.StudentResponse;
 import com.school.app.siswa_service.entity.Student;
 import com.school.app.siswa_service.exception.CustomMessageException;
+import com.school.app.siswa_service.feign.model.RolesResponse;
+import com.school.app.siswa_service.feign.service.BackofficeService;
 import com.school.app.siswa_service.helper.StudentHelper;
 import com.school.app.siswa_service.repository.StudentRepository;
 import com.school.app.siswa_service.service.StudentService;
@@ -24,11 +26,14 @@ import java.util.UUID;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final BackofficeService backofficeService;
 
     @Override
     public StudentResponse save(StudentRequest request) {
         Student student = new Student();
         StudentResponse studentResponse = new StudentResponse();
+        RolesResponse rolesResponse = backofficeService.fetchRolesById();
+
         student.setId(UUID.randomUUID().toString());
         student.setFullname(request.getFullname());
         student.setPhoneNo(request.getPhoneNo());
@@ -38,6 +43,8 @@ public class StudentServiceImpl implements StudentService {
         student.setDob(StudentHelper.convertDob(request.getDob()));
         student.setAvatar(request.getAvatar());
         student.setDeleted(0);
+        student.setRolesId(rolesResponse.getId());
+        student.setRolesName(rolesResponse.getName());
         Student responseStudent = studentRepository.save(student);
         BeanUtils.copyProperties(responseStudent, studentResponse);
         return studentResponse;

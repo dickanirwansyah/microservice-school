@@ -11,3 +11,6 @@ create table tbl_student(
     gender varchar(20) not null,
     primary key (id)
 );
+
+alter table tbl_student add roles_id varchar(100);
+alter table tbl_student add roles_name varchar(100);

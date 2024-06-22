@@ -39,4 +39,10 @@ public class Student extends BaseEntity{
 
     @Column(name = "avatar", columnDefinition = "TEXT")
     private String avatar;
+
+    @Column(name = "roles_id", nullable = false, length = 100)
+    private String rolesId;
+
+    @Column(name = "roles_name", nullable = false, length = 100)
+    private String rolesName;
 }

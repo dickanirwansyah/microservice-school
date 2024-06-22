@@ -7,4 +7,5 @@ import java.util.List;
 public interface RolesService {
 
     List<RolesResponse> dropdownRoles();
+    RolesResponse findByRolesById(String rolesId);
 }

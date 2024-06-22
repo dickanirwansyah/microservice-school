@@ -3,7 +3,6 @@ spring:
     name: discovery-service
 eureka:
   instance:
-    prefer-ip-address: true
     hostname: localhost
   client:
     register-with-eureka: false

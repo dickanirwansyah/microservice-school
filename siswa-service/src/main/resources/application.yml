@@ -1,4 +1,7 @@
 spring:
+  cloud:
+    compatibility-verifier:
+      enabled: false
   application:
     name: siswa-service
   datasource:
@@ -13,3 +16,8 @@ server:
   servlet:
     context-path: /siswa-service
   port: 8081
+feignClient:
+  backoffice-service:
+    rolesIdSiswa: R003
+    host: backoffice-service
+    fetchRolesById: /backoffice-service/backoffice-service/v1/fetch-roles-byid/{id}
